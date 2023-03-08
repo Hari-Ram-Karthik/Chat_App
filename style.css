@@ -16,7 +16,7 @@ body {
 .chat_section {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 75%;
 }
 
 .top_area {
@@ -83,28 +83,4 @@ textarea {
   left: 0;
   position: absolute;
   top: -20px;
-}
-
-.chat_with_user_list {
-  display: flex;
-  flex-direction: row;
-  width: 75%;
-  justify-content: center;
-  height: 600px;
-}
-
-.user_list {
-  border-right-width: 4px;
-  border-right-style: groove;
-  border-right-color: black;
-  width: 200px;
-  overflow-x: auto;
-  overflow-y: auto;
-}
-
-.user_area{
-  display: flex;
-  flex-direction: column;
-  padding-top: 40px;
-  padding: 16px;
 }

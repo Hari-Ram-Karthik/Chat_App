@@ -22,10 +22,7 @@ io.on('connection', (socket) => {
     socket.on('message', (msg) => {
         socket.broadcast.emit('message', msg)
     })
-    socket.on('user', (notification) => {
+    socket.on('user', (notification) => { 
         socket.broadcast.emit('user', notification);
-    })
-    socket.on("disconnect",()=>{
-        socket.broadcast.emit("userDisconnect");
     })
 })

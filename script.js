@@ -15,7 +15,6 @@ function newUser() {
       message: "joined!!",
     };
     appendNotification(notification, "user_notification");
-    appendUser(userName);
     textarea.value = "";
     scrollToBottom();
     // Send to server
@@ -42,23 +41,20 @@ function sendMessage(message) {
   socket.emit("message", msg);
 }
 
-function appendUser(userName) {
-  let div = document.createElement("div");
-  let markup = `
-        <h4>${userName}</h4>
-    `;
-  div.innerHTML = markup;
-  userArea.appendChild(div);
-}
-
 function appendMessage(msg, type) {
   let mainDiv = document.createElement("div");
   let className = type;
   mainDiv.classList.add(className, "message");
-
   let markup = `
         <h4>${msg.user}</h4>
         <p>${msg.message}</p>
+        <p style="font-size: small;
+        display: flex;
+        justify-content: flex-end;">${new Date().toLocaleTimeString("en-US", {
+          hour12: false,
+          hour: "numeric",
+          minute: "numeric",
+        })}</p>
     `;
   mainDiv.innerHTML = markup;
   messageArea.appendChild(mainDiv);
@@ -74,12 +70,6 @@ function appendNotification(notification, type) {
       `;
   mainDiv.innerHTML = markup;
   messageArea.appendChild(mainDiv);
-  //   let user= `
-  //   <h4>${notification.user}</h4>
-  // `;
-  // let div = document.createElement("div");
-  // div.innerHTML=div;
-  // userArea.appendChild(div);
 }
 // Recieve messages
 socket.on("message", (msg) => {
@@ -92,17 +82,6 @@ socket.on("user", (notification) => {
   scrollToBottom();
 });
 
-socket.on("userDisconnect", () => {
-  let notification = {
-    user: userName,
-    message: "left!!",
-  };
-  appendNotification(notification, "user_notification");
-  scrollToBottom();
-});
-
 function scrollToBottom() {
   messageArea.scrollTop = messageArea.scrollHeight;
 }
-
-
